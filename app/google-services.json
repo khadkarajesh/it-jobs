@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1066099524971",
+    "firebase_url": "https://jobs-34d14.firebaseio.com",
+    "project_id": "jobs-34d14",
+    "storage_bucket": "jobs-34d14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066099524971:android:05789d73e5e7e749",
+        "android_client_info": {
+          "package_name": "com.softwarejobs.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066099524971-qsqnl1sa07gtm4d9mvepi4qadc8ouvkq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softwarejobs.job",
+            "certificate_hash": "cdae831a9b6e149f88b69e1f6563545b3a685289"
+          }
+        },
+        {
+          "client_id": "1066099524971-rfdgjakj10fdn7pb4qi10p0cnc50p1j9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGl1gOj-2wk0UIccfOkvgN0YByICIdfTw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066099524971-rfdgjakj10fdn7pb4qi10p0cnc50p1j9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
