@@ -1,10 +1,11 @@
-package com.softwarejobs.job
+package com.softwarejobs.job.view.home
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.softwarejobs.job.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
