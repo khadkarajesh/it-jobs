@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   xmlns:tools="http://schemas.android.com/tools"
+                                   android:elevation="2dp"
+                                   app:cardCornerRadius="4dp"
+                                   android:layout_marginBottom="16dp"
+                                   android:layout_width="match_parent"
+                                   app:contentPadding="8dp"
+                                   android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/company_logo"
+                    android:src="@drawable/ic_company"
+                    android:layout_gravity="center_vertical"
+                    android:tint="@android:color/darker_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <TextView
+                        android:text="Sr. Software Engineer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/company_job_designation"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        app:layout_constraintStart_toEndOf="@+id/company_logo"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"/>
+                <TextView
+                        android:text="Attlassian Corp."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/company_name"
+                        app:layout_constraintStart_toEndOf="@+id/company_logo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/company_job_designation"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/company_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kathmandu, Nepal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:drawableLeft="@drawable/ic_location"/>
+        <com.google.android.material.chip.ChipGroup
+                android:id="@+id/skills_container"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
