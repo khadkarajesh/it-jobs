@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.profile.ProfileActivity">
+        </activity>
         <activity android:name=".view.detail.JobDetailActivity">
         </activity>
         <activity android:name=".view.home.HomeActivity"/>

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.softwarejobs.job.R
 import com.softwarejobs.job.data.model.Job
 import kotlinx.android.synthetic.main.job_detail_item.view.*
@@ -37,14 +36,8 @@ class JobDetailAdapter(var context: Context, var jobs: List<Job>) : RecyclerView
             .filter { !it.isNullOrEmpty() }
             .listIterator()
             .forEach {
-                var layoutParams = ChipGroup.LayoutParams(
-                    ViewGroup.MarginLayoutParams.WRAP_CONTENT,
-                    ViewGroup.MarginLayoutParams.WRAP_CONTENT
-                )
-                layoutParams.setMargins(4, 4, 4, 4)
                 var chip = Chip(context)
                 chip.text = it
-                chip.layoutParams = layoutParams
                 holder.itemView.skills_container.addView(chip)
             }
     }
