@@ -73,7 +73,7 @@ Mobile Application, Web Development, Project Management, IOT"
             android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_summary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/chipGroup">
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/skills_cg">
         <com.google.android.material.chip.Chip android:layout_width="wrap_content"
                                                android:layout_height="wrap_content"
                                                android:text="Android"/>
@@ -107,7 +107,7 @@ Mobile Application, Web Development, Project Management, IOT"
             android:layout_height="wrap_content"
             android:id="@+id/chip_add_skills"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/skills_cg"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
