@@ -13,6 +13,7 @@ class _StateAnimationButton extends State<AnimatedButton>
   AnimationController _controller;
   Animation<double> transitionTween;
   Animation<BorderRadius> borderRadius;
+  double _opacity = 1.0;
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _StateAnimationButton extends State<AnimatedButton>
     );
     borderRadius = BorderRadiusTween(
       begin: BorderRadius.circular(30),
-      end: BorderRadius.circular(70),
+      end: BorderRadius.circular(80),
     ).animate(
       CurvedAnimation(
         parent: _controller,
@@ -57,16 +58,6 @@ class _StateAnimationButton extends State<AnimatedButton>
       builder: (BuildContext context, Widget child) {
         return Stack(
           children: <Widget>[
-//            Center(
-//                child: Container(
-//              alignment: Alignment.bottomCenter,
-//              width: transitionTween.value,
-//              height: transitionTween.value,
-//              decoration: BoxDecoration(
-//                color: Colors.black12,
-//                borderRadius: borderRadius.value,
-//              ),
-//            )),
             Container(
               width: transitionTween.value,
               height: 50,
@@ -78,18 +69,25 @@ class _StateAnimationButton extends State<AnimatedButton>
                 color: Colors.lightBlueAccent,
                 textColor: Colors.white,
                 onPressed: () {
+                  setState(() {
+                    _opacity = _opacity == 0.0 ? 1.0 : 0.0;
+                  });
                   _controller.reset();
                   _controller.forward();
                 },
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(18.0),
+                  borderRadius: new BorderRadius.circular(30.0),
                 ),
                 child: Padding(
                   padding:
                       EdgeInsets.only(top: 16, right: 32, left: 32, bottom: 16),
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(),
+                  child: AnimatedOpacity(
+                    opacity: _opacity,
+                    duration: Duration(milliseconds: 600),
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(),
+                    ),
                   ),
                 ),
               ),
