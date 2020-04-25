@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "498858350745",
+    "firebase_url": "https://jobs-937ec.firebaseio.com",
+    "project_id": "jobs-937ec",
+    "storage_bucket": "jobs-937ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498858350745:android:0d36835f517d501dd68008",
+        "android_client_info": {
+          "package_name": "com.nepninja.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498858350745-t28eg53qmkpcegt0i4m8jams3mvh9aoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaV4GqZjvTqVy_Wyjj_glzeMXxNGp_G3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498858350745-t28eg53qmkpcegt0i4m8jams3mvh9aoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
