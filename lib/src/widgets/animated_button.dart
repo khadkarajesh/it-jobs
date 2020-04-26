@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class AnimatedButton extends StatefulWidget {
   @override
@@ -8,93 +11,78 @@ class AnimatedButton extends StatefulWidget {
   }
 }
 
-class _StateAnimationButton extends State<AnimatedButton>
-    with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> transitionTween;
-  Animation<BorderRadius> borderRadius;
+class _StateAnimationButton extends State<AnimatedButton> {
+  bool squeezed = false;
   double _opacity = 1.0;
 
   @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 600), vsync: this)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {}
-      });
-
-    transitionTween = Tween<double>(
-      begin: 200,
-      end: 50,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-    borderRadius = BorderRadiusTween(
-      begin: BorderRadius.circular(30),
-      end: BorderRadius.circular(80),
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.ease,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (BuildContext context, Widget child) {
-        return Stack(
-          children: <Widget>[
-            Container(
-              width: transitionTween.value,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius.value,
-                color: Colors.lightBlueAccent,
-              ),
-              child: RaisedButton(
-                color: Colors.lightBlueAccent,
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    _opacity = _opacity == 0.0 ? 1.0 : 0.0;
-                  });
-                  _controller.reset();
-                  _controller.forward();
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsets.only(top: 16, right: 32, left: 32, bottom: 16),
-                  child: AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: Duration(milliseconds: 600),
-                    child: Text(
-                      "Sign in",
-                      style: TextStyle(),
+    return Stack(
+      children: <Widget>[
+        InkWell(
+          onTap: () {
+            setState(() {
+              squeezed = !squeezed;
+              _opacity = _opacity == 1.0 ? 0.0 : 1.0;
+            });
+          },
+          child: AnimatedContainer(
+            width: squeezed ? 55 : 200,
+            height: 50,
+            duration: Duration(milliseconds: 700),
+            curve: Curves.fastOutSlowIn,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(squeezed ? 70 : 30),
+              color: Colors.lightBlueAccent,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                AnimatedOpacity(
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
                     ),
                   ),
+                  opacity: _opacity,
+                  duration: Duration(seconds: 1),
                 ),
-              ),
+              ],
             ),
-          ],
-        );
-      },
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            setState(() {
+              squeezed = !squeezed;
+              _opacity = _opacity == 1.0 ? 0.0 : 1.0;
+            });
+          },
+          child: AnimatedContainer(
+            width: squeezed ? 55 : 200,
+            height: 50,
+            duration: Duration(milliseconds: 700),
+            curve: Curves.fastOutSlowIn,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(squeezed ? 70 : 30),
+            ),
+            child: AnimatedOpacity(
+              child: Padding(
+                padding: EdgeInsets.all(1),
+                child: CircularProgressIndicator(
+                    backgroundColor: Colors.lightBlueAccent,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        squeezed ? Colors.pinkAccent : Colors.lightBlueAccent)),
+              ),
+              opacity: _opacity == 0.0 ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 700),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
