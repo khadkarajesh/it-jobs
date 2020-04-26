@@ -4,16 +4,64 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+// ignore: must_be_immutable
 class AnimatedButton extends StatefulWidget {
+  double width;
+  double height;
+  int borderRadius;
+  Color backgroundColor;
+  int fadeDurationInMilliSecond;
+  String text;
+  Color progressIndicatorColor;
+  double fontSize;
+
+  AnimatedButton(
+      {this.height = 55.0,
+      this.width = 200.0,
+      this.borderRadius = 30,
+      this.backgroundColor = Colors.lightBlueAccent,
+      this.fadeDurationInMilliSecond = 700,
+      this.text = "Click",
+      this.progressIndicatorColor = Colors.pinkAccent,
+      this.fontSize = 18.0});
+
   @override
   State<StatefulWidget> createState() {
-    return _StateAnimationButton();
+    return _StateAnimationButton(
+        height: this.height,
+        width: this.width,
+        borderRadius: this.borderRadius,
+        backgroundColor: this.backgroundColor,
+        fadeDurationInMilliSecond: this.fadeDurationInMilliSecond,
+        text: this.text,
+        progressIndicatorColor: this.progressIndicatorColor,
+        fontSize: this.fontSize);
   }
 }
 
 class _StateAnimationButton extends State<AnimatedButton> {
   bool squeezed = false;
   double _opacity = 1.0;
+  static const double SQUEEZED_BORDER_RADIUS = 70.0;
+
+  final double width;
+  final double height;
+  final int borderRadius;
+  final Color backgroundColor;
+  final int fadeDurationInMilliSecond;
+  final String text;
+  final Color progressIndicatorColor;
+  final double fontSize;
+
+  _StateAnimationButton(
+      {@required this.height,
+      @required this.width,
+      @required this.borderRadius,
+      @required this.backgroundColor,
+      @required this.fadeDurationInMilliSecond,
+      @required this.text,
+      @required this.progressIndicatorColor,
+      @required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +75,14 @@ class _StateAnimationButton extends State<AnimatedButton> {
             });
           },
           child: AnimatedContainer(
-            width: squeezed ? 55 : 200,
-            height: 50,
-            duration: Duration(milliseconds: 700),
+            width: squeezed ? height : width,
+            height: height,
+            duration: Duration(milliseconds: fadeDurationInMilliSecond),
             curve: Curves.fastOutSlowIn,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(squeezed ? 70 : 30),
-              color: Colors.lightBlueAccent,
+              borderRadius: BorderRadius.circular(
+                  squeezed ? SQUEEZED_BORDER_RADIUS : borderRadius.toDouble()),
+              color: backgroundColor,
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,10 +90,10 @@ class _StateAnimationButton extends State<AnimatedButton> {
               children: <Widget>[
                 AnimatedOpacity(
                   child: Text(
-                    "Sign In",
+                    "${this.text}",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: fontSize,
                     ),
                   ),
                   opacity: _opacity,
@@ -62,23 +111,24 @@ class _StateAnimationButton extends State<AnimatedButton> {
             });
           },
           child: AnimatedContainer(
-            width: squeezed ? 55 : 200,
-            height: 50,
-            duration: Duration(milliseconds: 700),
+            width: squeezed ? height : width,
+            height: height,
+            duration: Duration(milliseconds: fadeDurationInMilliSecond),
             curve: Curves.fastOutSlowIn,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(squeezed ? 70 : 30),
+              borderRadius: BorderRadius.circular(
+                  squeezed ? SQUEEZED_BORDER_RADIUS : borderRadius.toDouble()),
             ),
             child: AnimatedOpacity(
               child: Padding(
                 padding: EdgeInsets.all(1),
                 child: CircularProgressIndicator(
-                    backgroundColor: Colors.lightBlueAccent,
+                    backgroundColor: backgroundColor,
                     valueColor: AlwaysStoppedAnimation<Color>(
-                        squeezed ? Colors.pinkAccent : Colors.lightBlueAccent)),
+                        squeezed ? progressIndicatorColor : backgroundColor)),
               ),
               opacity: _opacity == 0.0 ? 1.0 : 0.0,
-              duration: Duration(milliseconds: 700),
+              duration: Duration(milliseconds: fadeDurationInMilliSecond),
             ),
           ),
         ),

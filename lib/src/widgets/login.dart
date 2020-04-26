@@ -99,6 +99,16 @@ class _StateLogin extends State<Login> {
           SizedBox(
             height: 24,
           ),
+//          AnimatedButton(
+//            height: 55,
+//            width: 200,
+//            borderRadius: 30,
+//            backgroundColor: Colors.lightBlueAccent,
+//            fadeDurationInMilliSecond: 700,
+//            text: "Sign In",
+//            progressIndicatorColor: Colors.pinkAccent,
+//
+//          ),
           AnimatedButton(),
         ],
       ),
