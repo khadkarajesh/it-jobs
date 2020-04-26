@@ -12,6 +12,7 @@ class _StateLogin extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
   bool animate = false;
+  bool squeezed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -99,20 +100,30 @@ class _StateLogin extends State<Login> {
           SizedBox(
             height: 24,
           ),
-//          AnimatedButton(
-//            height: 55,
-//            width: 200,
-//            borderRadius: 30,
-//            backgroundColor: Colors.lightBlueAccent,
-//            fadeDurationInMilliSecond: 700,
-//            text: "Sign In",
-//            progressIndicatorColor: Colors.pinkAccent,
-//
-//          ),
-          AnimatedButton(),
+          AnimatedButton(
+            height: 55,
+            width: 200,
+            borderRadius: 30,
+            backgroundColor: Colors.lightBlueAccent,
+            fadeDurationInMilliSecond: 400,
+            text: "Sign In",
+            fontSize: 30,
+            progressIndicatorColor: Colors.pinkAccent,
+            onTap: (reset) {
+              makeRequest(reset);
+            },
+          ),
+
+//          AnimatedButton(),
         ],
       ),
     );
+  }
+
+  void makeRequest(Function reset) {
+    Future.delayed(Duration(seconds: 3), () {
+      reset();
+    });
   }
 
   void enableAutoValidate() {

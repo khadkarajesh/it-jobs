@@ -14,28 +14,33 @@ class AnimatedButton extends StatefulWidget {
   String text;
   Color progressIndicatorColor;
   double fontSize;
+  final void Function(Function reset) onTap;
 
-  AnimatedButton(
-      {this.height = 55.0,
-      this.width = 200.0,
-      this.borderRadius = 30,
-      this.backgroundColor = Colors.lightBlueAccent,
-      this.fadeDurationInMilliSecond = 700,
-      this.text = "Click",
-      this.progressIndicatorColor = Colors.pinkAccent,
-      this.fontSize = 18.0});
+  AnimatedButton({
+    this.height = 55.0,
+    this.width = 200.0,
+    this.borderRadius = 30,
+    this.backgroundColor = Colors.lightBlueAccent,
+    this.fadeDurationInMilliSecond = 700,
+    this.text = "Click",
+    this.progressIndicatorColor = Colors.pinkAccent,
+    this.fontSize = 16.0,
+    this.onTap,
+  });
 
   @override
   State<StatefulWidget> createState() {
     return _StateAnimationButton(
-        height: this.height,
-        width: this.width,
-        borderRadius: this.borderRadius,
-        backgroundColor: this.backgroundColor,
-        fadeDurationInMilliSecond: this.fadeDurationInMilliSecond,
-        text: this.text,
-        progressIndicatorColor: this.progressIndicatorColor,
-        fontSize: this.fontSize);
+      height: this.height,
+      width: this.width,
+      borderRadius: this.borderRadius,
+      backgroundColor: this.backgroundColor,
+      fadeDurationInMilliSecond: this.fadeDurationInMilliSecond,
+      text: this.text,
+      progressIndicatorColor: this.progressIndicatorColor,
+      fontSize: this.fontSize,
+      onTap: onTap,
+    );
   }
 }
 
@@ -52,16 +57,26 @@ class _StateAnimationButton extends State<AnimatedButton> {
   final String text;
   final Color progressIndicatorColor;
   final double fontSize;
+  final void Function(Function reset) onTap;
 
-  _StateAnimationButton(
-      {@required this.height,
-      @required this.width,
-      @required this.borderRadius,
-      @required this.backgroundColor,
-      @required this.fadeDurationInMilliSecond,
-      @required this.text,
-      @required this.progressIndicatorColor,
-      @required this.fontSize});
+  _StateAnimationButton({
+    @required this.height,
+    @required this.width,
+    @required this.borderRadius,
+    @required this.backgroundColor,
+    @required this.fadeDurationInMilliSecond,
+    @required this.text,
+    @required this.progressIndicatorColor,
+    @required this.fontSize,
+    @required this.onTap,
+  });
+
+  void reset() {
+    setState(() {
+      squeezed = !squeezed;
+      _opacity = _opacity == 1.0 ? 0.0 : 1.0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +87,7 @@ class _StateAnimationButton extends State<AnimatedButton> {
             setState(() {
               squeezed = !squeezed;
               _opacity = _opacity == 1.0 ? 0.0 : 1.0;
+              onTap(reset);
             });
           },
           child: AnimatedContainer(
@@ -93,7 +109,7 @@ class _StateAnimationButton extends State<AnimatedButton> {
                     "${this.text}",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: fontSize,
+                      fontSize: fontSize < 18.0 ? fontSize : 18.0,
                     ),
                   ),
                   opacity: _opacity,
@@ -108,6 +124,7 @@ class _StateAnimationButton extends State<AnimatedButton> {
             setState(() {
               squeezed = !squeezed;
               _opacity = _opacity == 1.0 ? 0.0 : 1.0;
+              onTap(reset);
             });
           },
           child: AnimatedContainer(
