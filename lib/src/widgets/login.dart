@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobs/src/widgets/animated_button.dart';
+import 'package:nepninja/nepninja.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -100,15 +100,15 @@ class _StateLogin extends State<Login> {
           SizedBox(
             height: 24,
           ),
-          AnimatedButton(
+          CircularProgressButton(
             height: 55,
             width: 200,
             borderRadius: 30,
             backgroundColor: Colors.lightBlueAccent,
             fadeDurationInMilliSecond: 400,
             text: "Sign In",
-            fontSize: 30,
             progressIndicatorColor: Colors.pinkAccent,
+            fontSize: 20.0,
             onTap: (reset) {
               makeRequest(reset);
             },
