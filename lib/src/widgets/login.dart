@@ -68,8 +68,6 @@ class _StateLogin extends State<Login> {
     );
   }
 
-  bool isValid() {}
-
   Widget getForm() {
     return Form(
       key: _formKey,
@@ -82,9 +80,7 @@ class _StateLogin extends State<Login> {
               labelText: "Email",
             ),
             validator: (value) => validateEmail(value),
-            onChanged: (value) {
-              enableAutoValidate();
-            },
+            onChanged: (value) {},
           ),
           TextFormField(
               obscureText: true,
@@ -94,9 +90,7 @@ class _StateLogin extends State<Login> {
               ),
               validator: (value) =>
                   value.isEmpty ? "Password can't be empty" : null,
-              onChanged: (value) {
-                enableAutoValidate();
-              }),
+              onChanged: (value) {}),
           SizedBox(
             height: 24,
           ),
@@ -110,11 +104,14 @@ class _StateLogin extends State<Login> {
             progressIndicatorColor: Colors.pinkAccent,
             fontSize: 20.0,
             onTap: (reset) {
-              makeRequest(reset);
+              if (_formKey.currentState.validate()) {
+                makeRequest(reset);
+              } else {
+                reset();
+                setState(() => _autoValidate = true);
+              }
             },
           ),
-
-//          AnimatedButton(),
         ],
       ),
     );
@@ -124,14 +121,6 @@ class _StateLogin extends State<Login> {
     Future.delayed(Duration(seconds: 3), () {
       reset();
     });
-  }
-
-  void enableAutoValidate() {
-    if (!_autoValidate) {
-      setState(() {
-        _autoValidate = true;
-      });
-    }
   }
 
   bool isValidEmail(String email) {
