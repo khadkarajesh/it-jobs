@@ -17,19 +17,117 @@ class _StateLogin extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.topLeft,
-        padding: EdgeInsets.only(top: 64, left: 16, right: 16, bottom: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            getHeader(),
-            getForm(),
-          ],
-        ),
+        body: Container(
+      padding: EdgeInsets.only(
+        top: 64,
+        left: 16,
+        right: 16,
+        bottom: 24,
       ),
-    );
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              getHeader(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 32,
+                  bottom: 32,
+                ),
+                child: getForm(),
+              )
+            ],
+          ),
+          Text("Forgot Password?"),
+          SizedBox(
+            height: 32,
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 32),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 1,
+                  width: 30,
+                  color: Colors.grey,
+                ),
+                Padding(
+                  child: Text(
+                    "OR",
+                  ),
+                  padding: EdgeInsets.only(
+                    left: 8,
+                    right: 8,
+                  ),
+                ),
+                Container(
+                  height: 1,
+                  width: 30,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 200,
+            height: 55,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 2.0,
+                )),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    "assets/images/google.png",
+                    height: 24,
+                    width: 24,
+                  ),
+                  Text(
+                    "Sign In with Google",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+//          SizedBox(
+//            height: 80,
+//          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: RichText(
+                  text: TextSpan(
+                children: [
+                  TextSpan(
+                      text: "Don't have an account? ",
+                      style: TextStyle(color: Colors.black)),
+                  TextSpan(
+                      text: 'Create Now',
+                      style: TextStyle(
+                        color: Colors.lightBlueAccent,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ],
+              )),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 
   Widget getHeader() {
@@ -56,7 +154,7 @@ class _StateLogin extends State<Login> {
             ),
           ),
           SizedBox(
-            height: 32,
+            height: 56,
           ),
           Image.asset(
             "assets/images/boy.png",
@@ -92,7 +190,7 @@ class _StateLogin extends State<Login> {
                   value.isEmpty ? "Password can't be empty" : null,
               onChanged: (value) {}),
           SizedBox(
-            height: 24,
+            height: 32,
           ),
           CircularProgressButton(
             height: 55,
