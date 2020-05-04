@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:498858350745:android:0d36835f517d501dd68008",
+        "mobilesdk_app_id": "1:498858350745:android:b5643bdc334aff37d68008",
         "android_client_info": {
-          "package_name": "com.nepninja.job"
+          "package_name": "com.nepninja.jobs"
         }
       },
       "oauth_client": [
