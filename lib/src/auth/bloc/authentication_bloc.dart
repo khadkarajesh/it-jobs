@@ -22,7 +22,9 @@ class AuthenticationBloc
     if (event is AppStarted) {
       yield* _mapAppStartedToState();
     } else if (event is LoggedIn) {
-
+      yield* _mapLoggedInToState();
+    } else if (event is LoggedOut) {
+      yield* _mapLoggedOutToState();
     }
   }
 
