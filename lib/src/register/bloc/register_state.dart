@@ -9,6 +9,7 @@ class RegisterState {
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
+  final String errorMessage;
 
   bool get isFormValid =>
       isValidEmail &&
@@ -23,7 +24,8 @@ class RegisterState {
       this.isPasswordMatch,
       this.isSubmitting,
       this.isSuccess,
-      this.isFailure});
+      this.isFailure,
+      this.errorMessage});
 
   factory RegisterState.empty() {
     return RegisterState(
@@ -47,7 +49,7 @@ class RegisterState {
         isSuccess: false);
   }
 
-  factory RegisterState.failure() {
+  factory RegisterState.failure(String message) {
     return RegisterState(
         isValidEmail: true,
         isValidPassword: true,
@@ -55,7 +57,8 @@ class RegisterState {
         isPasswordMatch: true,
         isSubmitting: false,
         isFailure: true,
-        isSuccess: false);
+        isSuccess: false,
+        errorMessage: message);
   }
 
   factory RegisterState.success() {
@@ -97,7 +100,7 @@ class RegisterState {
         isValidPassword: isValidPassword ?? this.isValidPassword,
         isValidConfirmPassword:
             isValidConfirmPassword ?? this.isValidConfirmPassword,
-        isPasswordMatch: isPasswordMatch?? this.isPasswordMatch,
+        isPasswordMatch: isPasswordMatch ?? this.isPasswordMatch,
         isSubmitting: isSubmitting ?? this.isSubmitting,
         isSuccess: isSuccess ?? this.isSuccess,
         isFailure: isFailure ?? this.isFailure);

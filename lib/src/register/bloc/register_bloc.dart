@@ -32,10 +32,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     } else if (event is SubmitFormEvent) {
       yield RegisterState.loading();
       try {
-        _userRepository.signUp(email: event.email, password: event.password);
+        await _userRepository.signUp(
+            email: event.email, password: event.password);
         yield RegisterState.success();
-      } catch (_) {
-        yield RegisterState.failure();
+      } catch (e) {
+        yield RegisterState.failure(e.message);
       }
     }
   }
