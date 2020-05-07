@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:498858350745:android:b5643bdc334aff37d68008",
+        "mobilesdk_app_id": "1:498858350745:android:203aec4c4b421301d68008",
         "android_client_info": {
           "package_name": "com.nepninja.jobs"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "498858350745-u7m9or9s5m5ihg3ihobj3isnkno3it27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nepninja.jobs",
+            "certificate_hash": "48e668ae4ba9df92987f5f01f87be23fb47db910"
+          }
+        },
         {
           "client_id": "498858350745-t28eg53qmkpcegt0i4m8jams3mvh9aoe.apps.googleusercontent.com",
           "client_type": 3

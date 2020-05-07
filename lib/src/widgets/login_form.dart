@@ -76,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
               SnackBar(
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('Login Failure'), Icon(Icons.error)],
+                  children: [Text(state.errorMessage), Icon(Icons.error)],
                 ),
                 backgroundColor: Colors.red,
               ),
@@ -169,7 +169,9 @@ class _LoginFormState extends State<LoginForm> {
                         width: 2.0,
                       )),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      _loginBloc.add(LoginWithGooglePressed());
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -227,9 +229,10 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void register(BuildContext context) {
-      Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) {
-      return RegisterScreen(userRepository: _userRepository,);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return RegisterScreen(
+        userRepository: _userRepository,
+      );
     }));
   }
 
