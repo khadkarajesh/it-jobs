@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/auth/bloc/authentication_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/login/bloc/login_bloc.dart';
 import 'package:jobs/src/login/bloc/login_event.dart';
 import 'package:jobs/src/login/bloc/login_state.dart';
+import 'package:jobs/src/widgets/register_screen.dart';
 import 'package:nepninja/nepninja.dart';
 
 class LoginForm extends StatefulWidget {
@@ -166,24 +168,27 @@ class _LoginFormState extends State<LoginForm> {
                         color: Colors.grey,
                         width: 2.0,
                       )),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          "assets/images/google.png",
-                          height: 24,
-                          width: 24,
-                        ),
-                        Text(
-                          "Sign In with Google",
-                          style: TextStyle(
-                            fontSize: 16,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/images/google.png",
+                            height: 24,
+                            width: 24,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Sign In with Google",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -195,18 +200,22 @@ class _LoginFormState extends State<LoginForm> {
                     alignment: Alignment.bottomCenter,
                     child: RichText(
                         text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text: "Don't have an account? ",
-                                style: TextStyle(color: Colors.black)),
-                            TextSpan(
-                                text: 'Create Now',
-                                style: TextStyle(
-                                  color: Colors.lightBlueAccent,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ],
-                        )),
+                      children: [
+                        TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(color: Colors.black)),
+                        TextSpan(
+                            text: 'Create Now',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                register(context);
+                              },
+                            style: TextStyle(
+                              color: Colors.lightBlueAccent,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
+                    )),
                   ),
                 )
               ],
@@ -215,6 +224,13 @@ class _LoginFormState extends State<LoginForm> {
         },
       ),
     );
+  }
+
+  void register(BuildContext context) {
+      Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) {
+      return RegisterScreen(userRepository: _userRepository,);
+    }));
   }
 
   Widget getHeader() {
@@ -275,7 +291,7 @@ class _LoginFormState extends State<LoginForm> {
               autovalidate: true,
               autocorrect: false,
               validator: (value) =>
-              !state.isPasswordValid ? "Password can't be empty" : null,
+                  !state.isPasswordValid ? "Password can't be empty" : null,
               onChanged: (value) {}),
           SizedBox(
             height: 32,
@@ -289,9 +305,7 @@ class _LoginFormState extends State<LoginForm> {
             text: "Sign In",
             progressIndicatorColor: Colors.pinkAccent,
             fontSize: 20.0,
-            onTap: (reset) {
-
-            },
+            onTap: (reset) {},
           ),
         ],
       ),

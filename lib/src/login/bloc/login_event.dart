@@ -56,6 +56,6 @@ class LoginWithCredentialsPressed extends LoginEvent {
 
   const LoginWithCredentialsPressed(
       {@required this.email, @required this.password});
-
-
 }
+
+
