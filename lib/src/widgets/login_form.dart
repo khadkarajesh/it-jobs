@@ -37,6 +37,8 @@ class _LoginFormState extends State<LoginForm> {
     return loginState.isFormValid && isPopulated && !loginState.isSubmitting;
   }
 
+  Function _reset;
+
   @override
   void initState() {
     super.initState();
@@ -70,6 +72,7 @@ class _LoginFormState extends State<LoginForm> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.isFailure) {
+          _reset();
           Scaffold.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -79,21 +82,6 @@ class _LoginFormState extends State<LoginForm> {
                   children: [Text(state.errorMessage), Icon(Icons.error)],
                 ),
                 backgroundColor: Colors.red,
-              ),
-            );
-        }
-        if (state.isSubmitting) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Logging In...'),
-                    CircularProgressIndicator(),
-                  ],
-                ),
               ),
             );
         }
@@ -277,25 +265,29 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: <Widget>[
           TextFormField(
+            controller: _emailController,
             decoration: const InputDecoration(
               hintText: 'Enter your email',
               labelText: "Email",
             ),
-            onChanged: (value) {},
             autovalidate: true,
             keyboardType: TextInputType.emailAddress,
+            validator: (_) {
+              return !state.isEmailValid ? "Enter valid email" : null;
+            },
           ),
           TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: "Password",
-                hintText: 'Enter your password',
-              ),
-              autovalidate: true,
-              autocorrect: false,
-              validator: (value) =>
-                  !state.isPasswordValid ? "Password can't be empty" : null,
-              onChanged: (value) {}),
+            controller: _passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              labelText: "Password",
+              hintText: 'Enter your password',
+            ),
+            autovalidate: true,
+            autocorrect: false,
+            validator: (value) =>
+                !state.isPasswordValid ? "Password can't be empty" : null,
+          ),
           SizedBox(
             height: 32,
           ),
@@ -308,7 +300,10 @@ class _LoginFormState extends State<LoginForm> {
             text: "Sign In",
             progressIndicatorColor: Colors.pinkAccent,
             fontSize: 20.0,
-            onTap: (reset) {},
+            onTap: (reset) {
+              _reset = reset;
+              _onFormSubmitted();
+            },
           ),
         ],
       ),
