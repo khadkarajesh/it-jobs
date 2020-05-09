@@ -91,63 +91,57 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-          return Container(
-            padding: EdgeInsets.only(
+          return ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(
               top: 64,
               left: 16,
               right: 16,
               bottom: 24,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              getHeader(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 32,
+                  bottom: 32,
+                ),
+                child: getForm(state),
+              ),
+              Center(child: Text("Forgot Password?")),
+              SizedBox(
+                height: 32,
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 32),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    getHeader(),
+                    Container(
+                      height: 1,
+                      width: 30,
+                      color: Colors.grey,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 32,
-                        bottom: 32,
+                      child: Text(
+                        "OR",
                       ),
-                      child: getForm(state),
-                    )
+                      padding: EdgeInsets.only(
+                        left: 8,
+                        right: 8,
+                      ),
+                    ),
+                    Container(
+                      height: 1,
+                      width: 30,
+                      color: Colors.grey,
+                    ),
                   ],
                 ),
-                Text("Forgot Password?"),
-                SizedBox(
-                  height: 32,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 32),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        height: 1,
-                        width: 30,
-                        color: Colors.grey,
-                      ),
-                      Padding(
-                        child: Text(
-                          "OR",
-                        ),
-                        padding: EdgeInsets.only(
-                          left: 8,
-                          right: 8,
-                        ),
-                      ),
-                      Container(
-                        height: 1,
-                        width: 30,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
+              ),
+              Center(
+                child: Container(
                   width: 200,
                   height: 55,
                   decoration: BoxDecoration(
@@ -182,34 +176,32 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                 ),
-//          SizedBox(
-//            height: 80,
-//          ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: RichText(
-                        text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "Don't have an account? ",
-                            style: TextStyle(color: Colors.black)),
-                        TextSpan(
-                            text: 'Create Now',
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                register(context);
-                              },
-                            style: TextStyle(
-                              color: Colors.lightBlueAccent,
-                              fontWeight: FontWeight.bold,
-                            )),
-                      ],
-                    )),
-                  ),
-                )
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: RichText(
+                    text: TextSpan(
+                  children: [
+                    TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(color: Colors.black)),
+                    TextSpan(
+                        text: 'Create Now',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            register(context);
+                          },
+                        style: TextStyle(
+                          color: Colors.lightBlueAccent,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
+                )),
+              )
+            ],
           );
         },
       ),
@@ -227,8 +219,6 @@ class _LoginFormState extends State<LoginForm> {
   Widget getHeader() {
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             "Welcome Back,",
