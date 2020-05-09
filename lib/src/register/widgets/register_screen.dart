@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/register/bloc/bloc.dart';
-import 'package:jobs/src/widgets/register_form.dart';
+import 'package:jobs/src/register/widgets/register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
   final UserRepository _userRepository;

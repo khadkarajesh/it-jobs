@@ -8,7 +8,7 @@ import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/login/bloc/login_bloc.dart';
 import 'package:jobs/src/login/bloc/login_event.dart';
 import 'package:jobs/src/login/bloc/login_state.dart';
-import 'package:jobs/src/widgets/register_screen.dart';
+import 'package:jobs/src/register/widgets/register_screen.dart';
 import 'package:nepninja/nepninja.dart';
 
 class LoginForm extends StatefulWidget {
