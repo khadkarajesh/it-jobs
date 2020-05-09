@@ -221,7 +221,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: <Widget>[
           Text(
-            "Welcome Back,",
+            "Welcome Back",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
