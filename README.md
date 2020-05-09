@@ -1,16 +1,21 @@
-# jobs
+## Contribution
+This application is built to experiment the bloc pattern.  I would love to collaborate with open source enthusiast for great flutter community. 
 
-A new Flutter application.
+If you really keen on flutter development and contribution over this project please drop me email over rajesh.k.khadka@gmail.com, i will catch you there.
 
-## Getting Started
+# Feature
 
-This project is a starting point for a Flutter application.
+ - Firebase
+ - Google, Email Authentication
+ - Bloc
+ - Offline data sync
+ - Cloud Messaging
+ 
+ 
+## Screens built so far
 
-A few resources to get you started if this is your first Flutter project:
+<p>
+  <img src="https://github.com/khadkarajesh/jobs/blob/master/media/signin.jpg" width="200" title="hover text">
+  <img src="https://github.com/khadkarajesh/jobs/blob/master/media/register.jpg" width="200" title="hover text">
+</p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
