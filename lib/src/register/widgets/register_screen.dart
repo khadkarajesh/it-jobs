@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/register/bloc/bloc.dart';
-import 'package:jobs/src/widgets/register_form.dart';
+import 'package:jobs/src/register/widgets/register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
   final UserRepository _userRepository;
@@ -16,13 +16,21 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: BlocProvider<RegisterBloc>(
-          create: (context) => RegisterBloc(userRepository: _userRepository),
-          child: Padding(
-            child: RegisterForm(),
-            padding: const EdgeInsets.all(16),
-          ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.grey),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ),
+      body: BlocProvider<RegisterBloc>(
+        create: (context) => RegisterBloc(userRepository: _userRepository),
+        child: Padding(
+          child: RegisterForm(),
+          padding: const EdgeInsets.all(16),
         ),
       ),
     );

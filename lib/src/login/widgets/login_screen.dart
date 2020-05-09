@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/login/bloc/login_bloc.dart';
-import 'package:jobs/src/widgets/login_form.dart';
-import 'package:nepninja/nepninja.dart';
+
+import 'login_form.dart';
 
 class LoginScreen extends StatelessWidget {
 

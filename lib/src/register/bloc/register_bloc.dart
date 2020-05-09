@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/utils/validators.dart';
+import 'package:rxdart/rxdart.dart';
 import './bloc.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
@@ -14,6 +15,23 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   @override
   RegisterState get initialState => RegisterState.empty();
+
+  @override
+  Stream<Transition<RegisterEvent, RegisterState>> transformEvents(
+      Stream<RegisterEvent> events,
+      TransitionFunction<RegisterEvent, RegisterState> transitionFn,
+      ) {
+    final nonDebounceStream = events.where((event) {
+      return (event is! EmailChangedEvent && event is! PasswordChangedEvent);
+    });
+    final debounceStream = events.where((event) {
+      return (event is EmailChangedEvent || event is PasswordChangedEvent);
+    }).debounceTime(Duration(milliseconds: 300));
+    return super.transformEvents(
+      nonDebounceStream.mergeWith([debounceStream]),
+      transitionFn,
+    );
+  }
 
   @override
   Stream<RegisterState> mapEventToState(

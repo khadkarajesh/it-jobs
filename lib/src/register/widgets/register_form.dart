@@ -96,8 +96,34 @@ class _RegisterFormState extends State<RegisterForm> {
         builder: (context, state) {
           return Form(
               child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 32,
+                    bottom: 32,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        "Let's get started",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Create account to get hired by your dream company",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 50,),
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -140,15 +166,25 @@ class _RegisterFormState extends State<RegisterForm> {
                   return null;
                 },
               ),
-              RegisterButton(
-                onPressed:
-                    isRegisteredButtonEnabled(state) ? _onFormSubmitted : null,
+              SizedBox(
+                height: 32,
+              ),
+              Center(
+                child: RegisterButton(
+                  onPressed: isRegisteredButtonEnabled(state)
+                      ? _onFormSubmitted
+                      : null,
+                ),
               ),
             ],
           ));
         },
       ),
     );
+  }
+
+  void register(Function reset) {
+    _onFormSubmitted();
   }
 
   void _onFormSubmitted() {
@@ -175,11 +211,16 @@ class RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
+      padding: const EdgeInsets.only(top: 20, bottom: 20, right: 70, left: 70),
+      color: Colors.lightBlueAccent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),
       onPressed: _onPressed,
-      child: Text('Register'),
+      child: Text(
+        'Register',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }

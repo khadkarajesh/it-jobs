@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/auth/bloc/authentication_bloc.dart';
 import 'package:jobs/src/auth/bloc/authentication_event.dart';
 import 'package:jobs/src/auth/bloc/authentication_state.dart';
+import 'package:jobs/src/login/widgets/login_screen.dart';
 import 'package:jobs/src/simple_bloc_delegate.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
 import 'package:jobs/src/widgets/home_screen.dart';
-import 'package:jobs/src/widgets/login_screen.dart';
 import 'package:jobs/src/widgets/splash_screen.dart';
 
 void main() {

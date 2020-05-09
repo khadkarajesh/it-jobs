@@ -29,10 +29,10 @@ class RegisterState {
 
   factory RegisterState.empty() {
     return RegisterState(
-        isValidEmail: false,
-        isValidPassword: false,
-        isValidConfirmPassword: false,
-        isPasswordMatch: false,
+        isValidEmail: true,
+        isValidPassword: true,
+        isValidConfirmPassword: true,
+        isPasswordMatch: true,
         isSubmitting: false,
         isFailure: false,
         isSuccess: false);
@@ -43,7 +43,7 @@ class RegisterState {
         isValidEmail: true,
         isValidPassword: true,
         isValidConfirmPassword: true,
-        isPasswordMatch: false,
+        isPasswordMatch: true,
         isSubmitting: true,
         isFailure: false,
         isSuccess: false);
