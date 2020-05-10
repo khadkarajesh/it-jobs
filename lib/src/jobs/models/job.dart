@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Job {
   final String title;
-  final String jobType;
-  final String company;
   final String experience;
   final String employmentType;
   final int salary;
@@ -10,8 +10,6 @@ class Job {
 
   Job(
       {this.title,
-      this.jobType,
-      this.company,
       this.experience,
       this.employmentType,
       this.salary,
@@ -21,12 +19,19 @@ class Job {
   factory Job.fromJson(Map<String, dynamic> data) {
     return Job(
         title: data['title'],
-        jobType: data['jobType'],
-        company: data['company'],
         experience: data['experince'],
         employmentType: data['employmentType'],
         salary: data['salary'],
         description: data['description'],
         postedDate: data['postedDate']);
   }
+}
+
+class Company {
+  final String address;
+  final String email;
+  final String logo;
+  final String phone;
+
+  Company({this.address, this.email, this.logo, this.phone});
 }

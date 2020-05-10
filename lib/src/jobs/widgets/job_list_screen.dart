@@ -7,15 +7,7 @@ import 'package:jobs/src/jobs/bloc/jobs_state.dart';
 import 'package:jobs/src/jobs/models/job.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
-class JobListScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _StateJobList();
-  }
-}
-
-class _StateJobList extends State<JobListScreen> {
-  @override
+class JobListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SealedBlocBuilder3<JobsBloc, JobsState, Initial, Success, Failure>(
       builder: (context, states) {
@@ -81,7 +73,7 @@ class _JobListState extends State<JobList> {
         return index >= jobs.length
             ? BottomLoader()
             : JobWidget(
-                title: "Sr. Software Engineer",
+                title: jobs[index].title,
               );
       },
       itemCount: hasReachedMax ? jobs.length : jobs.length + 1,
@@ -103,7 +95,7 @@ class JobWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return null;
+    return Text(title);
   }
 }
 
