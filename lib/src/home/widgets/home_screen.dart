@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobs/src/auth/bloc/authentication_bloc.dart';
 import 'package:jobs/src/auth/bloc/authentication_event.dart';
-import 'package:jobs/src/profile/widgets/profile_screen.dart';
+import 'package:jobs/src/jobs/widgets/jobs_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String name;
@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _StateHomeScreen extends State<HomeScreen> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-    ProfileScreen(),
+    JobsScreen(),
     Text("home"),
   ];
 

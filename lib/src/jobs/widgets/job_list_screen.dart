@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jobs/src/jobs/bloc/jobs_bloc.dart';
 import 'package:jobs/src/jobs/bloc/jobs_event.dart';
 import 'package:jobs/src/jobs/bloc/jobs_state.dart';
+import 'package:jobs/src/jobs/models/job.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
 class JobListScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _StateJobList extends State<JobListScreen> {
 }
 
 class JobList extends StatefulWidget {
-  final List<DocumentSnapshot> jobs;
+  final List<Job> jobs;
   final bool hasReachedMax;
 
   JobList({Key key, @required this.jobs, @required this.hasReachedMax})
@@ -45,7 +46,7 @@ class JobList extends StatefulWidget {
 }
 
 class _JobListState extends State<JobList> {
-  List<DocumentSnapshot> get jobs => widget.jobs;
+  List<Job> get jobs => widget.jobs;
 
   bool get hasReachedMax => widget.hasReachedMax;
 
