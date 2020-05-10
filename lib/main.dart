@@ -6,7 +6,7 @@ import 'package:jobs/src/auth/bloc/authentication_state.dart';
 import 'package:jobs/src/login/widgets/login_screen.dart';
 import 'package:jobs/src/simple_bloc_delegate.dart';
 import 'package:jobs/src/data/api/user_repository.dart';
-import 'package:jobs/src/widgets/home_screen.dart';
+import 'package:jobs/src/home/widgets/home_screen.dart';
 import 'package:jobs/src/widgets/splash_screen.dart';
 
 void main() {
@@ -33,6 +33,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.lightBlueAccent,
+        accentColor: Colors.lightBlueAccent,
+      ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is Uninitialized) {
