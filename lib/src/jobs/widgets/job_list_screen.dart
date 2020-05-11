@@ -68,16 +68,20 @@ class _JobListState extends State<JobList> {
         child: Text("No jobs"),
       );
     }
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return index >= jobs.length
-            ? BottomLoader()
-            : JobWidget(
-                title: jobs[index].title,
-              );
-      },
-      itemCount: hasReachedMax ? jobs.length : jobs.length + 1,
-      controller: _scrollController,
+    return Container(
+      color: const Color(0xefefef),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (BuildContext context, int index) {
+          return index >= jobs.length
+              ? BottomLoader()
+              : JobWidget(
+                  job: jobs[index],
+                );
+        },
+        itemCount: hasReachedMax ? jobs.length : jobs.length + 1,
+        controller: _scrollController,
+      ),
     );
   }
 
@@ -88,14 +92,120 @@ class _JobListState extends State<JobList> {
   }
 }
 
-class JobWidget extends StatelessWidget {
-  final String title;
+class JobWidget extends StatefulWidget {
+  final Job job;
 
-  const JobWidget({this.title});
+  const JobWidget({this.job});
+
+  @override
+  State<StatefulWidget> createState() => JobWidgetState();
+}
+
+class JobWidgetState extends State<JobWidget> {
+  Job get job => widget.job;
+  bool saved = false;
 
   @override
   Widget build(BuildContext context) {
-    return Text(title);
+    return Card(
+      child: InkWell(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 16,
+            horizontal: 8,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Image.asset(
+                "assets/images/boy.png",
+                height: 45,
+                width: 45,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Text(
+                          job.title,
+                          style: Theme.of(context).textTheme.title,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              saved = !saved;
+                            });
+                          },
+                          child: Icon(
+                            saved ? Icons.bookmark : Icons.bookmark_border,
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
+                    Text(
+                      "NepNinja",
+                      style: Theme.of(context).textTheme.subtitle,
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          transform: Matrix4.translationValues(-4, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.grey,
+                              ),
+                              Align(
+                                child: Text("Kathmandu Nepal"),
+                                alignment: Alignment.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(job.postedDate),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(job.employmentType),
+                        Text(
+                          "Apply for job",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.lightBlueAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

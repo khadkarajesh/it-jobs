@@ -34,7 +34,7 @@ class JobsBloc extends Bloc<JobsEvent, JobsState> {
     Fetch fetch,
   ) async* {
     final posts = await _jobRepository.getJobs(20);
-    yield JobsState.success(jobs: posts, hasReachedMax: false);
+    yield JobsState.success(jobs: posts, hasReachedMax: true);
   }
 
   Stream<JobsState> _mapSuccessAndFetchToState(
@@ -44,7 +44,7 @@ class JobsBloc extends Bloc<JobsEvent, JobsState> {
     if (!success.hasReachedMax) {
       final jobs = await _jobRepository.getJobs(20);
       yield jobs.isEmpty
-          ? JobsState.success(jobs: success.jobs, hasReachedMax: true)
+          ? JobsState.success(jobs: success.jobs, hasReachedMax: false)
           : JobsState.success(
               jobs: success.jobs + jobs,
               hasReachedMax: false,

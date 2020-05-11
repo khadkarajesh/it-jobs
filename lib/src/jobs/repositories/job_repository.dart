@@ -5,7 +5,7 @@ import 'package:jobs/src/jobs/models/job.dart';
 
 class JobRepository {
   Future<List<Job>> getJobs(int limit) async {
-    (await Firestore.instance
+    return (await Firestore.instance
             .collection("jobs")
             .orderBy("postedDate")
             .limit(limit)
