@@ -310,6 +310,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.23.1"
+  sealed_flutter_bloc:
+    dependency: "direct main"
+    description:
+      name: sealed_flutter_bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
+  sealed_unions:
+    dependency: transitive
+    description:
+      name: sealed_unions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2+2"
   sky_engine:
     dependency: transitive
     description: flutter
